@@ -1,0 +1,20 @@
+# Object files and libraries
+*.o
+*.a
+*.so
+
+# Executables
+a.out
+*.out
+*.exe
+
+# System files
+.DS_Store
+.swp
+
+# Editor configuration
+.vscode/
+.idea/
+
+# Valgrind
+vgcore.*
