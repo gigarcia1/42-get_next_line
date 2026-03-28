@@ -6,12 +6,16 @@
 /*   By: gigarcia <gigarcia@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 13:52:56 by gigarcia          #+#    #+#             */
-/*   Updated: 2026/03/19 14:00:51 by gigarcia         ###   ########.fr       */
+/*   Updated: 2026/03/28 14:03:49 by gigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
+
+//BUFFER_SIZE
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 10
 
 //LIBRARIES
 # include <unistd.h>
