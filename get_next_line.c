@@ -6,7 +6,7 @@
 /*   By: gigarcia <gigarcia@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 17:46:00 by gigarcia          #+#    #+#             */
-/*   Updated: 2026/05/05 00:06:58 by gigarcia         ###   ########.fr       */
+/*   Updated: 2026/05/05 12:44:09 by gigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ static char	*line_extractor(char *stash)
 	char	*line;
 
 	i = 0;
-	if (!stash || !stash[0]) // no hay nada más que extraer
+	if (!stash || !stash[0])
 		return (NULL);
 	while (stash[i] && stash[i] != SEPARATOR)
 		i++;
-	line = malloc(i + (stash[i] == SEPARATOR) + 1); // i + 1 = caracter nulo; i + 1 + 1 = caracter \n
+	line = malloc(i + (stash[i] == SEPARATOR) + 1);
 	if (!line)
 		return (NULL);
 	ft_memcpy(line, stash, i);
@@ -64,7 +64,7 @@ static char	*stash_update(char	*stash)
 	int		new_len;
 
 	update_idx = ft_strchr(stash, SEPARATOR);
-	if (!update_idx) //stash vacío, última línea
+	if (!update_idx)
 		return (free(stash), NULL);
 	new_len = ft_strlen(update_idx + 1);
 	ft_memmove(stash, (update_idx + 1), new_len);
@@ -93,13 +93,16 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-int	main(char **argv, int argc)
+
+#include <stdio.h>
+int	main()
 {
 	char *line = NULL;
 	int fd = open("prueba.txt", O_RDONLY); 
 	while(1)
 	{
 		line = get_next_line(fd);
+		printf("%s", line);
 		if (!line)
 			break ;
 		free(line);
