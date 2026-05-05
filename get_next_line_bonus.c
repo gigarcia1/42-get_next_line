@@ -6,7 +6,7 @@
 /*   By: gigarcia <gigarcia@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 15:40:25 by gigarcia          #+#    #+#             */
-/*   Updated: 2026/05/05 13:15:10 by gigarcia         ###   ########.fr       */
+/*   Updated: 2026/05/05 14:19:24 by gigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	*get_next_line(int fd)
 	static char	*stash[1024];
 	char		*line;
 
-	if (fd < 0 || fd >= 1024|| BUFFER_SIZE <= 0)
+	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
 		return (NULL);
 	stash[fd] = read_loop(fd, stash[fd]);
 	if (!stash[fd])
@@ -92,3 +92,31 @@ char	*get_next_line(int fd)
 	stash[fd] = stash_update(stash[fd]);
 	return (line);
 }
+/*
+#include <stdio.h>
+#include <fcntl.h>
+
+int	main()
+{
+	char	*line;
+	int		fd1 = open("doc1.txt", O_RDONLY);
+	int		fd2 = open("doc2.txt", O_RDONLY);
+	int		fd3 = open("doc3.txt", O_RDONLY);
+
+	line = get_next_line(fd1);
+	printf("%s", line);
+	free(line);
+
+	line = get_next_line(fd2);
+	printf("%s", line);
+	free(line);
+
+	line = get_next_line(fd1);
+	printf("%s", line);
+	free(line);
+
+	line = get_next_line(fd3);
+	printf("%s", line);
+	free(line);
+}
+*/

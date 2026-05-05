@@ -6,7 +6,7 @@
 /*   By: gigarcia <gigarcia@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 17:46:00 by gigarcia          #+#    #+#             */
-/*   Updated: 2026/05/05 13:12:59 by gigarcia         ###   ########.fr       */
+/*   Updated: 2026/05/05 14:30:30 by gigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,7 @@ char	*get_next_line(int fd)
 	stash = stash_update(stash);
 	return (line);
 }
-
-
+/*
 #include <stdio.h>
 int	main()
 {
@@ -102,11 +101,11 @@ int	main()
 	while(1)
 	{
 		line = get_next_line(fd);
-		printf("%s", line);
 		if (!line)
 			break ;
+		printf("%s", line);
 		free(line);
 	}
 	close(fd);
 	return (0);
-}
+}*/
