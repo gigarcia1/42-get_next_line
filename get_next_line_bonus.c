@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gigarcia <gigarcia@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/03 17:46:00 by gigarcia          #+#    #+#             */
-/*   Updated: 2026/05/05 00:06:58 by gigarcia         ###   ########.fr       */
+/*   Created: 2026/05/04 15:40:25 by gigarcia          #+#    #+#             */
+/*   Updated: 2026/05/04 16:09:22 by gigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*read_loop(int fd, char *stash)
 {
@@ -44,11 +44,11 @@ static char	*line_extractor(char *stash)
 	char	*line;
 
 	i = 0;
-	if (!stash || !stash[0]) // no hay nada más que extraer
+	if (!stash || !stash[0])
 		return (NULL);
 	while (stash[i] && stash[i] != SEPARATOR)
 		i++;
-	line = malloc(i + (stash[i] == SEPARATOR) + 1); // i + 1 = caracter nulo; i + 1 + 1 = caracter \n
+	line = malloc(i + (stash[i] == SEPARATOR) + 1);
 	if (!line)
 		return (NULL);
 	ft_memcpy(line, stash, i);
@@ -64,7 +64,7 @@ static char	*stash_update(char	*stash)
 	int		new_len;
 
 	update_idx = ft_strchr(stash, SEPARATOR);
-	if (!update_idx) //stash vacío, última línea
+	if (!update_idx)
 		return (free(stash), NULL);
 	new_len = ft_strlen(update_idx + 1);
 	ft_memmove(stash, (update_idx + 1), new_len);
@@ -74,36 +74,21 @@ static char	*stash_update(char	*stash)
 
 char	*get_next_line(int fd)
 {
-	static char	*stash;
+	static char	*stash[1024];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd >= 1024|| BUFFER_SIZE <= 0)
 		return (NULL);
-	stash = read_loop(fd, stash);
-	if (!stash)
+	stash[fd] = read_loop(fd, stash[fd]);
+	if (!stash[fd])
 		return (NULL);
-	line = line_extractor(stash);
+	line = line_extractor(stash[fd]);
 	if (!line)
 	{
-		free(stash);
-		stash = NULL;
+		free(stash[fd]);
+		stash[fd] = NULL;
 		return (NULL);
 	}
-	stash = stash_update(stash);
+	stash[fd] = stash_update(stash[fd]);
 	return (line);
-}
-
-int	main(char **argv, int argc)
-{
-	char *line = NULL;
-	int fd = open("prueba.txt", O_RDONLY); 
-	while(1)
-	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		free(line);
-	}
-	close(fd);
-	return (0);
 }

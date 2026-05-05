@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gigarcia <gigarcia@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/03 17:46:13 by gigarcia          #+#    #+#             */
-/*   Updated: 2026/05/04 15:17:33 by gigarcia         ###   ########.fr       */
+/*   Created: 2026/05/04 15:39:49 by gigarcia          #+#    #+#             */
+/*   Updated: 2026/05/04 19:03:56 by gigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*join_n_free(char *stash, char *buffer, int bt_rd)
 {
@@ -35,7 +35,7 @@ char	*join_n_free(char *stash, char *buffer, int bt_rd)
 	return (free(aux), stash);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, int c)
 {
 	char	*tmp;
 
