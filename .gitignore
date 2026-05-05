@@ -1,3 +1,5 @@
+*.txt
+
 # Object files and libraries
 *.o
 *.a

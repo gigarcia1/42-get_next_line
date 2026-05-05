@@ -6,7 +6,7 @@
 /*   By: gigarcia <gigarcia@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 17:46:00 by gigarcia          #+#    #+#             */
-/*   Updated: 2026/05/05 12:44:09 by gigarcia         ###   ########.fr       */
+/*   Updated: 2026/05/05 13:12:59 by gigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	*read_loop(int fd, char *stash)
 	if (!buffer)
 		return (free(stash), NULL);
 	bt_read = 1;
-	while (!ft_strchr(stash, SEPARATOR) && bt_read > 0)
+	while ((!stash || !ft_strchr(stash, SEPARATOR)) && bt_read > 0)
 	{
 		bt_read = read(fd, buffer, BUFFER_SIZE);
 		if (bt_read == -1)
